@@ -141,16 +141,21 @@ DataInO2 = DataIn;
 DataInCO2 = DataIn;
 for i = 1:size(DataIn,2)    
     if size(DataInO2,1) ~= 1
-        DataInO2 = DataInO2(boolean(DataInO2(:,i) ==...
+        DataInO2 = DataInO2(DataInO2(:,i) ==...
             num2str(length(find(DataInO2(:,i)=='1')) >=...
-            size(DataInO2,1)/2)),:);
-    end
+            size(DataInO2,1)/2),:);
+    end     
     if size(DataInCO2,1) ~= 1
-        DataInCO2 = DataInCO2(boolean(DataInCO2(:,i) ==...
+        DataInCO2 = DataInCO2(DataInCO2(:,i) ==...
             num2str(length(find(DataInCO2(:,i)=='1')) <...
-            size(DataInCO2,1)/2)),:);
+            size(DataInCO2,1)/2),:);
+    else
+        if size(DataInO2,1) == 1
+            break;
+        end
     end
 end
+
 LSRate = bin2dec(DataInO2)*bin2dec(DataInCO2);
 
 fprintf('Life Support Index is %i.\n', LSRate)
