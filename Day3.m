@@ -59,7 +59,7 @@ MostCommon = repmat('0',[1 size(DataIn,2)]);
 LeastCommon = repmat('1',[1 size(DataIn,2)]);
 
 for i = 1:size(DataIn,2)    
-    if length(find(DataIn(:,i)=='1')) >= size(DataIn,1)/2
+    if sum(DataIn(:,i)=='1') >= size(DataIn,1)/2
        MostCommon(i) = '1';
        LeastCommon(i) = '0';
     end
@@ -142,12 +142,12 @@ DataInCO2 = DataIn;
 for i = 1:size(DataIn,2)    
     if size(DataInO2,1) ~= 1
         DataInO2 = DataInO2(DataInO2(:,i) ==...
-            num2str(length(find(DataInO2(:,i)=='1')) >=...
+            num2str(sum(DataInO2(:,i)=='1') >=...
             size(DataInO2,1)/2),:);
     end     
     if size(DataInCO2,1) ~= 1
         DataInCO2 = DataInCO2(DataInCO2(:,i) ==...
-            num2str(length(find(DataInCO2(:,i)=='1')) <...
+            num2str(sum(DataInCO2(:,i)=='1') <...
             size(DataInCO2,1)/2),:);
     else
         if size(DataInO2,1) == 1
