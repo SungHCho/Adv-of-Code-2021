@@ -53,14 +53,13 @@
 clc;
 clear;
 DataIn = char(splitlines(fileread('Day3Data.txt')));
-RotDataIn = DataIn.';
 
 % Part 1
-MostCommon = repmat('0',[1, size(RotDataIn,1)]);
-LeastCommon = repmat('1',[1, size(RotDataIn,1)]);
+MostCommon = repmat('0',[1 size(DataIn,2)]);
+LeastCommon = repmat('1',[1 size(DataIn,2)]);
 
-for i = 1:size(RotDataIn,1)    
-    if length(find(RotDataIn(i,:)=='1')) >= size(RotDataIn,2)/2
+for i = 1:size(DataIn,2)    
+    if length(find(DataIn(:,i)=='1')) >= size(DataIn,1)/2
        MostCommon(i) = '1';
        LeastCommon(i) = '0';
     end
@@ -140,18 +139,16 @@ fprintf('Power consumption is %i.\n', PowerCons)
 
 DataInO2 = DataIn;
 DataInCO2 = DataIn;
-for i = 1:size(RotDataIn,1)    
-    RotDataO2 = DataInO2.';
-    RotDataCO2 = DataInCO2.';
+for i = 1:size(DataIn,2)    
     if size(DataInO2,1) ~= 1
-        DataInO2 = DataInO2(boolean(RotDataO2(i,:) ==...
-            num2str(length(find(RotDataO2(i,:)=='1')) >=...
-            size(RotDataO2,2)/2)),:);
+        DataInO2 = DataInO2(boolean(DataInO2(:,i) ==...
+            num2str(length(find(DataInO2(:,i)=='1')) >=...
+            size(DataInO2,1)/2)),:);
     end
     if size(DataInCO2,1) ~= 1
-        DataInCO2 = DataInCO2(boolean(RotDataCO2(i,:) ==...
-            num2str(length(find(RotDataCO2(i,:)=='1')) <...
-            size(RotDataCO2,2)/2)),:);
+        DataInCO2 = DataInCO2(boolean(DataInCO2(:,i) ==...
+            num2str(length(find(DataInCO2(:,i)=='1')) <...
+            size(DataInCO2,1)/2)),:);
     end
 end
 LSRate = bin2dec(DataInO2)*bin2dec(DataInCO2);
