@@ -134,7 +134,8 @@ end
 
 DangerVentsDiag = sum(Vents > 1,'all');
 
-fprintf('Number of dangerous vents with diagonals are : %i\n',DangerVents)
+fprintf('Number of dangerous vents with diagonals are : %i\n',...
+    DangerVentsDiag)
 
 function indexes = IndexGen(x1,x2,y1,y2,VentSize)
     if x1 < x2
