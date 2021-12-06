@@ -82,10 +82,8 @@ fclose(FID);
 
 [FishCounts,~] = histcounts(DataIn,0:9);
 for i = 1:80
-    BreedCount = FishCounts(1);
     FishCounts = circshift(FishCounts,-1);
-    FishCounts(end) = BreedCount;
-    FishCounts(7) = FishCounts(7)+BreedCount;
+    FishCounts(7) = FishCounts(7)+FishCounts(end);
 end
 
 fprintf('Number of fishes after 80 days is: %i\n', sum(FishCounts));
@@ -100,10 +98,8 @@ fprintf('Number of fishes after 80 days is: %i\n', sum(FishCounts));
 % How many lanternfish would there be after 256 days?
 
 for i = 81:256
-    BreedCount = FishCounts(1);
     FishCounts = circshift(FishCounts,-1);
-    FishCounts(end) = BreedCount;
-    FishCounts(7) = FishCounts(7)+BreedCount;
+    FishCounts(7) = FishCounts(7)+FishCounts(end);
 end
 
 fprintf('Number of fishes after 256 days is: %i\n', sum(FishCounts));
