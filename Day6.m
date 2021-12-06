@@ -80,8 +80,7 @@ DataIn = textscan(FID,'%u','Delimiter', ',');
 DataIn = DataIn{1};
 fclose(FID);
 
-FishCounts = 0:9;
-[FishCounts,~] = histcounts(DataIn,FishCounts);
+[FishCounts,~] = histcounts(DataIn,0:9);
 for i = 1:80
     BreedCount = FishCounts(1);
     FishCounts = circshift(FishCounts,-1);
