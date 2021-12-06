@@ -75,7 +75,10 @@
 
 clc;
 clear;
-DataIn = csvread('Day6Data.txt');
+FID = fopen('Day6Data.txt');
+DataIn = textscan(FID,'%u','Delimiter', ',');
+DataIn = DataIn{1};
+fclose(FID);
 
 FishCounts = 0:8;
 [FishCounts,~] = histcounts(DataIn,FishCounts);
