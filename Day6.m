@@ -80,12 +80,11 @@ DataIn = textscan(FID,'%u','Delimiter', ',');
 DataIn = DataIn{1};
 fclose(FID);
 
-FishCounts = 0:8;
+FishCounts = 0:9;
 [FishCounts,~] = histcounts(DataIn,FishCounts);
-FishCounts(end+1) = 0;
 for i = 1:80
     BreedCount = FishCounts(1);
-    FishCounts(1:end-1) = FishCounts(2:end);
+    FishCounts = circshift(FishCounts,-1);
     FishCounts(end) = BreedCount;
     FishCounts(7) = FishCounts(7)+BreedCount;
 end
@@ -103,7 +102,7 @@ fprintf('Number of fishes after 80 days is: %i\n', sum(FishCounts));
 
 for i = 81:256
     BreedCount = FishCounts(1);
-    FishCounts(1:end-1) = FishCounts(2:end);
+    FishCounts = circshift(FishCounts,-1);
     FishCounts(end) = BreedCount;
     FishCounts(7) = FishCounts(7)+BreedCount;
 end
