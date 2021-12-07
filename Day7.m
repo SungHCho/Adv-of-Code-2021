@@ -88,16 +88,16 @@ fprintf('Minimum fuel used is %i at position %i.\n',...
 % least fuel possible so they can make you an escape route! How much fuel
 % must they spend to align to that position?
 
-PossPos = min(DataIn):max(DataIn);
-
-PrevFuelDiff = sum((1+abs(DataIn-PossPos(1)))/2.*abs(DataIn-PossPos(1)));
-for i = 2:length(PossPos)
-    FuelDiff = sum((1+abs(DataIn-PossPos(i)))/2.*abs(DataIn-PossPos(i)));
+PossPos = min(DataIn);
+PrevFuelDiff = sum((1+abs(DataIn-PossPos))/2.*abs(DataIn-PossPos));
+while 1
+    FuelDiff = sum((1+abs(DataIn-PossPos))/2.*abs(DataIn-PossPos));
     if FuelDiff > PrevFuelDiff
         break;
     end
+    PossPos = PossPos + 1;
     PrevFuelDiff = FuelDiff;    
 end
 
 fprintf('Minimum fuel used with new method is %i at position %i.\n',...
-    PrevFuelDiff,i);
+    PrevFuelDiff,PossPos);
