@@ -182,7 +182,7 @@ for i = 1:size(keystr,1)
     onechar = char(keystr(i,strlength(keystr(i,:))==2));
     fourchar = char(keystr(i,strlength(keystr(i,:))==4));
     sevenchar = char(keystr(i,strlength(keystr(i,:))==3));
-    eightchar = char(keystr(i,strlength(keystr(i,:))==7));
+    eightchar = 'abcdefg';
     zerosixnine = char(keystr(i,strlength(keystr(i,:))==6));
     key(1) = findkey(sevenchar, onechar);
     sixchar = identifysix(zerosixnine, onechar);
