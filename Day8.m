@@ -195,7 +195,7 @@ for i = 1:size(keystr,1)
     zerochar = identifyzero(zerosixnine, sixchar, ninechar);
     key(4) = findkey(eightchar, zerochar);
     key(2) = findkey(fourchar, [key(3:4),key(6)]);
-    key(7) = findkey('abcdefg', key(1:6));
+    key(7) = findkey(eightchar, key(1:6));
     
     output(i) = getoutput(out(i,:), key);
 end
@@ -211,7 +211,7 @@ function output = getoutput(out, key)
     fivechar =  sort([key(1:2) key(4) key(6:7)]);
     sixchar =  sort([key(1:2) key(4:7)]);
     sevenchar =  sort([key(1) key(3) key(6)]);
-    eightchar = sort(key);
+    eightchar = 'abcdefg';
     ninechar =  sort([key(1:4) key(6:7)]);
     
     numbers = zeros(1,4);
